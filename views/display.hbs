@@ -1,0 +1,17 @@
+
+
+<table style="width:100%" border=1>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Action</th>
+  </tr>
+  {{#each people}}
+  <tr>
+    <td>{{this.firstname}}</td>
+    <td>{{this.lastname}}</td>  
+    <td><a href="/delete/{{this._id}}">Delete</a></td>
+  </tr>
+  {{/each}}
+</table>
+
