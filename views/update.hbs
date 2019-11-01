@@ -1,0 +1,18 @@
+<html>
+<body>{{#each people}}
+<form method="POST" action="/edit">
+  First name:<br>
+  <input type="text" name="firstname" value="{{this.firstname}}">
+  <br>
+  Last name:<br>
+  <input type="text" name="lastname" value="{{this.lastname}}">
+  <br><br>
+
+  <input type="hidden"  name="user_id" value="{{this._id}}">
+  <br><br>
+  
+  <input type="submit" value="Submit">
+  {{/each}}
+</form> 
+</body>
+</html>

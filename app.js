@@ -55,17 +55,38 @@ app.post('/insert-data', function(req,res){
      })
  })
 
+
  //to get id and delete
 
  app.get('/delete/:id',function(req,res){
      var uid=req.params.id.toString();
      console.log(uid);
      db.collection('staffss').deleteOne({_id: new ObjectID(uid)});
- });
-});
+     
+ })
+
+ //update
+app.get('/update/:id',function(req,res){
+    var uid=req.params.id.toString();
+    db.collection('staffss').find({_id: new ObjectID(uid)}).toArray(function(err,mydata){
+        //console.log(mydata);
+        res.render('update',{people:mydata});
+})
+
+})
+app.post('/edit',function(req,res){
+    console.log(req.body);
+    var vid= req.body.user_id;
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+
+      db.collection('staffss').updateOne({_id: new ObjectID(vid)}, {$set: {firstname : firstname, lastname:lastname }});
+      res.redirect('/one')
+  })
 
 
-
+//db.collection('staff').updateOne({name:'haris'},{$set:{age:22}});
+})
 
 
 app.listen("3000");
